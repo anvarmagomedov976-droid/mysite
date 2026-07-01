@@ -14,7 +14,26 @@ index.htm1
             min-height: 100vh;  
             display: flex;  
             flex-direction: column;  
+            transition: background 0.3s, color 0.3s;  
         }  
+        body.dark {  
+            background: #1c1c1e;  
+            color: #f2f2f7;  
+        }  
+        body.dark .card {  
+            background: #2c2c2e;  
+            border-color: #3a3a3c;  
+        }  
+        body.dark .feature-item {  
+            background: #3a3a3c;  
+        }  
+        body.dark .subhead {  
+            color: #aeaeb2;  
+        }  
+        body.dark footer {  
+            color: #636366;  
+        }  
+    
         .card {  
             background: white;  
             border-radius: 28px;  
@@ -22,6 +41,7 @@ index.htm1
             box-shadow: 0 8px 30px rgba(0,0,0,0.06);  
             margin-bottom: 20px;  
             border: 1px solid rgba(0,0,0,0.04);  
+            transition: background 0.3s, border-color 0.3s;  
         }  
         h1 {  
             font-size: 34px;  
@@ -49,9 +69,15 @@ index.htm1
             width: 100%;  
             text-align: center;  
             border: none;  
-            transition: opacity 0.2s;  
+            transition: opacity 0.2s, transform 0.15s;  
+            cursor: pointer;  
         }  
-        .btn:active { opacity: 0.7; }  
+        .btn:active { opacity: 0.7; transform: scale(0.97); }  
+        .btn-secondary {  
+            background: #8e8e93;  
+            margin-top: 10px;  
+        }  
+    
         .features {  
             display: flex;  
             flex-direction: column;  
@@ -66,8 +92,48 @@ index.htm1
             display: flex;  
             align-items: center;  
             gap: 12px;  
+            transition: background 0.3s;  
         }  
         .feature-item span { font-size: 24px; }  
+    
+        .calc-input {  
+            display: flex;  
+            gap: 12px;  
+            margin: 16px 0;  
+            flex-wrap: wrap;  
+        }  
+        .calc-input input {  
+            flex: 1;  
+            min-width: 80px;  
+            padding: 14px 16px;  
+            border-radius: 16px;  
+            border: 1px solid #d1d1d6;  
+            font-size: 18px;  
+            background: #f8f8fc;  
+            outline: none;  
+            transition: border 0.2s;  
+        }  
+        .calc-input input:focus {  
+            border-color: #007aff;  
+        }  
+        body.dark .calc-input input {  
+            background: #3a3a3c;  
+            border-color: #555;  
+            color: white;  
+        }  
+        .calc-result {  
+            font-size: 28px;  
+            font-weight: 700;  
+            text-align: center;  
+            padding: 12px;  
+            background: #f8f8fc;  
+            border-radius: 20px;  
+            margin-top: 8px;  
+        }  
+        body.dark .calc-result {  
+            background: #3a3a3c;  
+        }  
+    
         footer {  
             margin-top: auto;  
             text-align: center;  
@@ -75,28 +141,74 @@ index.htm1
             font-size: 15px;  
             padding-top: 20px;  
         }  
+    
+        .card {  
+            animation: fadeUp 0.5s ease-out;  
+        }  
+        @keyframes fadeUp {  
+            from { opacity: 0; transform: translateY(20px); }  
+            to { opacity: 1; transform: translateY(0); }  
+        }  
     </style>  
 </head>  
 <body>  
-  
+    
 <div class="card">  
     <h1>Привет, это я</h1>  
     <p class="subhead">Сайт создан прямо на iPhone за 2 минуты</p>  
-    <a href="#" class="btn">👉 Написать мне</a>  
+    <button class="btn" onclick="alert('Спасибо! Я перезвоню 😊')">👉 Написать мне</button>  
+    <button class="btn btn-secondary" onclick="toggleTheme()">🌙 Тёмная тема</button>  
 </div>  
-  
+    
+<div class="card">  
+    <h2 style="font-size: 22px; margin-bottom: 14px;">🧮 Калькулятор</h2>  
+    <div class="calc-input">  
+        <input type="number" id="num1" placeholder="Число 1" value="10">  
+        <input type="number" id="num2" placeholder="Число 2" value="5">  
+    </div>  
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">  
+        <button class="btn" style="flex:1; padding:12px;" onclick="calc('+')">➕</button>  
+        <button class="btn" style="flex:1; padding:12px; background:#34c759;" onclick="calc('-')">➖</button>  
+        <button class="btn" style="flex:1; padding:12px; background:#ff9500;" onclick="calc('*')">✖️</button>  
+        <button class="btn" style="flex:1; padding:12px; background:#ff3b30;" onclick="calc('/')">➗</button>  
+    </div>  
+    <div class="calc-result" id="result">15</div>  
+</div>  
+    
 <div class="card">  
     <h2 style="font-size: 22px; margin-bottom: 14px;">Что умею</h2>  
     <div class="features">  
         <div class="feature-item"><span>📱</span> Адаптивный дизайн</div>  
         <div class="feature-item"><span>⚡</span> Быстрая загрузка</div>  
         <div class="feature-item"><span>🎨</span> Красивые цвета</div>  
+        <div class="feature-item"><span>🧠</span> Интерактив</div>  
     </div>  
 </div>  
-  
+    
 <footer>  
     Сделано в Safari · 2026  
 </footer>  
-  
+    
+<script>  
+    function calc(op) {  
+        const a = parseFloat(document.getElementById('num1').value) || 0;  
+        const b = parseFloat(document.getElementById('num2').value) || 0;  
+        let res;  
+        switch(op) {  
+            case '+': res = a + b; break;  
+            case '-': res = a - b; break;  
+            case '*': res = a * b; break;  
+            case '/': res = b !== 0 ? a / b : 'Ошибка';  
+        }  
+        document.getElementById('result').textContent = typeof res === 'number' ? res : res;  
+    }  
+    
+    function toggleTheme() {  
+        document.body.classList.toggle('dark');  
+        const btn = document.querySelector('.btn-secondary');  
+        btn.textContent = document.body.classList.contains('dark') ? '☀️ Светлая тема' : '🌙 Тёмная тема';  
+    }  
+</script>  
+    
 </body>  
 </html>  
