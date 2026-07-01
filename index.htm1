@@ -1,0 +1,102 @@
+index.htm1  
+<html lang="ru">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">  
+    <title>Мой сайт — сделано на iPhone</title>  
+    <style>  
+        * { margin: 0; padding: 0; box-sizing: border-box; }  
+        body {  
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;  
+            background: #f2f2f7;  
+            color: #1c1c1e;  
+            padding: 20px 16px 40px;  
+            min-height: 100vh;  
+            display: flex;  
+            flex-direction: column;  
+        }  
+        .card {  
+            background: white;  
+            border-radius: 28px;  
+            padding: 32px 24px;  
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);  
+            margin-bottom: 20px;  
+            border: 1px solid rgba(0,0,0,0.04);  
+        }  
+        h1 {  
+            font-size: 34px;  
+            font-weight: 700;  
+            letter-spacing: -0.5px;  
+            background: linear-gradient(135deg, #007aff, #5856d6);  
+            -webkit-background-clip: text;  
+            -webkit-text-fill-color: transparent;  
+            margin-bottom: 6px;  
+        }  
+        .subhead {  
+            font-size: 17px;  
+            color: #8e8e93;  
+            margin-bottom: 16px;  
+        }  
+        .btn {  
+            display: inline-block;  
+            background: #007aff;  
+            color: white;  
+            padding: 16px 32px;  
+            border-radius: 40px;  
+            text-decoration: none;  
+            font-weight: 600;  
+            font-size: 17px;  
+            width: 100%;  
+            text-align: center;  
+            border: none;  
+            transition: opacity 0.2s;  
+        }  
+        .btn:active { opacity: 0.7; }  
+        .features {  
+            display: flex;  
+            flex-direction: column;  
+            gap: 14px;  
+            margin-top: 6px;  
+        }  
+        .feature-item {  
+            background: #f8f8fc;  
+            padding: 16px 18px;  
+            border-radius: 18px;  
+            font-weight: 500;  
+            display: flex;  
+            align-items: center;  
+            gap: 12px;  
+        }  
+        .feature-item span { font-size: 24px; }  
+        footer {  
+            margin-top: auto;  
+            text-align: center;  
+            color: #8e8e93;  
+            font-size: 15px;  
+            padding-top: 20px;  
+        }  
+    </style>  
+</head>  
+<body>  
+  
+<div class="card">  
+    <h1>Привет, это я</h1>  
+    <p class="subhead">Сайт создан прямо на iPhone за 2 минуты</p>  
+    <a href="#" class="btn">👉 Написать мне</a>  
+</div>  
+  
+<div class="card">  
+    <h2 style="font-size: 22px; margin-bottom: 14px;">Что умею</h2>  
+    <div class="features">  
+        <div class="feature-item"><span>📱</span> Адаптивный дизайн</div>  
+        <div class="feature-item"><span>⚡</span> Быстрая загрузка</div>  
+        <div class="feature-item"><span>🎨</span> Красивые цвета</div>  
+    </div>  
+</div>  
+  
+<footer>  
+    Сделано в Safari · 2026  
+</footer>  
+  
+</body>  
+</html>  
